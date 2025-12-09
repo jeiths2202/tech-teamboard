@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tech Support Team Board
 
-## Getting Started
+> Internal project & issue tracking system for technical support operations
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Next.js 16 · React 19 · TypeScript · Prisma · SQLite · Tailwind CSS · shadcn/ui
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npx prisma generate
+npx prisma db push
+npm run db:seed
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+```
+src/
+├── app/           # App Router pages & API routes
+├── components/    # UI components (shadcn/ui based)
+├── lib/
+│   ├── db/        # DBIO abstraction layer
+│   └── store/     # Zustand state management
+└── types/         # TypeScript definitions
 
-To learn more about Next.js, take a look at the following resources:
+prisma/
+├── schema.prisma  # Data models
+└── seed.ts        # Initial data
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Dashboard** — Real-time project overview & metrics
+- **Kanban Board** — Drag-based workflow management
+- **Issue Tracking** — Full CRUD with IMS integration
+- **Member Management** — Role-based access control
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run db:seed` | Seed database |
+| `npm run db:migrate` | Run migrations |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
