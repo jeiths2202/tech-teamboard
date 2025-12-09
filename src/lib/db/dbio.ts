@@ -52,18 +52,8 @@ export interface DBIO<T> {
  * Prisma를 사용한 DBIO 구현체 팩토리
  * 어떤 모델이든 동일한 인터페이스로 CRUD 작업 수행 가능
  */
-export function createDBIO<T>(model: {
-  create: (args: { data: unknown; include?: unknown }) => Promise<T>;
-  createMany: (args: { data: unknown[] }) => Promise<{ count: number }>;
-  findUnique: (args: { where: unknown; include?: unknown; select?: unknown }) => Promise<T | null>;
-  findFirst: (args?: { where?: unknown; include?: unknown; orderBy?: unknown; skip?: number; take?: number; select?: unknown }) => Promise<T | null>;
-  findMany: (args?: { where?: unknown; include?: unknown; orderBy?: unknown; skip?: number; take?: number; select?: unknown }) => Promise<T[]>;
-  count: (args?: { where?: unknown }) => Promise<number>;
-  update: (args: { where: unknown; data: unknown; include?: unknown }) => Promise<T>;
-  updateMany: (args: { where: unknown; data: unknown }) => Promise<{ count: number }>;
-  delete: (args: { where: unknown }) => Promise<T>;
-  deleteMany: (args?: { where?: unknown }) => Promise<{ count: number }>;
-}): DBIO<T> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function createDBIO<T>(model: any): DBIO<T> {
   return {
     async create(params) {
       return model.create({
